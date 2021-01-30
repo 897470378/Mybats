@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.sikiedu.mapper.FindUser">
+	<insert id="insertUser" parameterType="java.util.List">
+		INSERt INTO t_user VALUES 
+		<foreach collection="list" item="list" separator=",">
+			(#{list.id},#{list.username},#{list.password},#{list.account})
+		</foreach>
+	</insert>
+	
+	<select id="queryById" parameterType="java.lang.Integer" resultType="User">
+		SELECT * FROM t_user  
+		<where>
+			<if test="id == 0">id = 24</if>
+			<if test="id == 1">AND id = 25</if>
+			<if test="id == 2">AND id = 26</if>
+		</where>
+	</select>
+</mapper>
